@@ -11,6 +11,8 @@ export function getPlaceName(place, state = false) {
 
 export function filterData(data, pollutent = "") {
   let finalData = [];
+  if (data.records.length === 0) {
+  }
   if (pollutent) {
   } else {
     for (let pollutentData of data.records) {

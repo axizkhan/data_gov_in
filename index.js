@@ -23,6 +23,7 @@ app.get("/airIndex/:pincode", async (req, res) => {
   const data = await aqiService.getAqiDate(city);
   res.status(200).json(data);
 });
+
 /**start server to listen to @PORT */
 app.listen(PORT, () => {
   console.log(`server listingn on PORT : ${PORT}`);
