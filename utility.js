@@ -9,19 +9,23 @@ export function getPlaceName(place, state = false) {
   return district[0] + district.slice(1).toLowerCase();
 }
 
-export function filterData(data, pollutent = "") {
+export function filterData(data) {
   let finalData = [];
-  if (data.records.length === 0) {
+
+  for (let pollutentData of data.records) {
+    let pollutentObject = {
+      pollutent: pollutentData.pollutant_id,
+      pollutentLevel: pollutentData.avg_value,
+    };
+    finalData.push(pollutentObject);
   }
-  if (pollutent) {
-  } else {
-    for (let pollutentData of data.records) {
-      let pollutentObject = {
-        pollutent: pollutentData.pollutant_id,
-        pollutentLevel: pollutentData.avg_value,
-      };
-      finalData.push(pollutentObject);
-    }
-  }
+
   return finalData;
+}
+
+export function pollutentData(data, pollutent) {
+  const filterData = data.filter((pollut) => {
+    if (pollut.pollutant_id === pollutent.toUpperCase()) return pollut;
+  });
+  return filterData;
 }
